@@ -1,0 +1,47 @@
+CREATE TABLE Customers (
+    CustomerID NUMBER PRIMARY KEY,
+    Name VARCHAR2(50),
+    Age NUMBER,
+    Balance NUMBER,
+    IsVIP VARCHAR2(5)
+);
+
+CREATE TABLE Loans (
+    LoanID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    InterestRate NUMBER,
+    DueDate DATE,
+    FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Accounts (
+    AccountID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    AccountType VARCHAR2(20),
+    Balance NUMBER
+);
+
+CREATE TABLE Employees (
+    EmployeeID NUMBER PRIMARY KEY,
+    Name VARCHAR2(50),
+    Department VARCHAR2(30),
+    Salary NUMBER
+);
+
+INSERT INTO Customers VALUES (1,'John',65,15000,'FALSE');
+INSERT INTO Customers VALUES (2,'Alice',45,9000,'FALSE');
+INSERT INTO Customers VALUES (3,'David',70,20000,'FALSE');
+
+INSERT INTO Loans VALUES (101,1,8,SYSDATE+15);
+INSERT INTO Loans VALUES (102,2,10,SYSDATE+60);
+INSERT INTO Loans VALUES (103,3,9,SYSDATE+25);
+
+INSERT INTO Accounts VALUES (201,1,'Savings',10000);
+INSERT INTO Accounts VALUES (202,2,'Savings',5000);
+INSERT INTO Accounts VALUES (203,3,'Savings',20000);
+
+INSERT INTO Employees VALUES (1,'Mark','HR',50000);
+INSERT INTO Employees VALUES (2,'Jane','HR',60000);
+INSERT INTO Employees VALUES (3,'Sam','IT',70000);
+
+COMMIT;
